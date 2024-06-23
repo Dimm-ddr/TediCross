@@ -41,7 +41,7 @@
     "sqlite": "^5.0.1",
     "sqlite3": "^5.1.6",
     "telegraf": "^4.13.1",
-    "ts-node": "^10.9.1",
+    "ts-node": "^10.9.2",
     "typescript": "^5.2.2",
     "underscore": "^1.13.6",
     "yargs": "^17.7.2"
