@@ -1,0 +1,20 @@
+{
+    "version": 2,
+    "builds": [
+      {
+        "src": "package.json",
+        "use": "@vercel/node"
+      }
+    ],
+    "scripts": {
+      "build": "npm run build",
+      "start": "npm start"
+    },
+    "env": {
+      "TELEGRAM_BOT_TOKEN": "@telegram_bot_token",
+      "DISCORD_BOT_TOKEN": "@discord_bot_token",
+      "TELEGRAM_CHAT_ID": "@telegram_chat_id",
+      "DISCORD_CHANNEL_ID": "@discord_channel_id"
+    }
+  }
+  

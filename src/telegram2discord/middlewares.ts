@@ -23,6 +23,7 @@ import { MessageMap } from "../MessageMap";
  *
  * @returns The text object, or undefined if no text was found
  */
+
 function createTextObjFromMessage(ctx: TediCrossContext, message: Message) {
 	return R.cond<any, any>([
 		// Text
@@ -350,8 +351,8 @@ function addReplyObj(ctx: TediCrossContext, next: () => void) {
 		? ctx.tediCross.message?.message_thread_id !== ctx.tediCross.message?.reply_to_message?.message_id
 			? ctx.tediCross.message?.reply_to_message
 			: ctx.tediCross.message?.reply_to_message?.message_thread_id
-			? undefined
-			: ctx.tediCross.message?.reply_to_message
+				? undefined
+				: ctx.tediCross.message?.reply_to_message
 		: ctx.tediCross.message?.reply_to_message;
 
 	// console.log(`repliedToMessage: ${repliedToMessage}`);
@@ -563,8 +564,8 @@ async function addPreparedObj(ctx: TediCrossContext, next: () => void) {
 				? ctx.tediCross.message?.message_thread_id !== ctx.tediCross.message?.reply_to_message?.message_id
 					? ctx.tediCross.message?.reply_to_message
 					: ctx.tediCross.message?.reply_to_message?.message_thread_id
-					? undefined
-					: ctx.tediCross.message?.reply_to_message
+						? undefined
+						: ctx.tediCross.message?.reply_to_message
 				: ctx.tediCross.message?.reply_to_message;
 
 			if (typeof messageReference !== "undefined") {
@@ -628,7 +629,7 @@ async function addPreparedObj(ctx: TediCrossContext, next: () => void) {
 								//@ts-ignore
 								R.prop("originalFrom")
 							)
-					  )(tc.replyTo);
+						)(tc.replyTo);
 				// Build the header
 				let header: string;
 				if (bridge.telegram.sendUsernames) {

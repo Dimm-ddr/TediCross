@@ -101,7 +101,7 @@ const dcBot = new DiscordClient({
 						type: ActivityType.Custom
 					}
 				]
-		  }
+			}
 		: {}
 });
 
