@@ -2,7 +2,7 @@ import R from "ramda";
 import { Bridge } from "../bridgestuff/Bridge";
 import mime from "mime/lite";
 import { handleEntities } from "./handleEntities";
-import Discord, { Client } from "discord.js";
+import Discord, { Client, GuildMember } from "discord.js";
 import { sleepOneMinute } from "../sleep";
 import { fetchDiscordChannel } from "../fetchDiscordChannel";
 import { Message } from "telegraf/typings/core/types/typegram";
@@ -119,9 +119,11 @@ async function makeDiscordMention(username: string, dcBot: Client, bridge: Bridg
 	try {
 		// Get the name of the Discord user this is a reply to
 		const channel = await fetchDiscordChannel(dcBot, bridge);
-		const dcUser = await channel.members.find(R.propEq("displayName", username));
+		const dcUser = channel.members.find((member: GuildMember) => member.displayName === username);
 
-		return R.ifElse(R.isNil, R.always(username), dcUser => `<@${dcUser.id}>`)(dcUser);
+		return R.ifElse(R.isNil, R.always(username), (dcUser: GuildMember | null | undefined) =>
+			dcUser ? `<@${dcUser.id}>` : username
+		)(dcUser);
 	} catch (err) {
 		// Cannot make a mention. Just return the username
 		return username;
@@ -358,7 +360,8 @@ function addReplyObj(ctx: TediCrossContext, next: () => void) {
 	if (!R.isNil(repliedToMessage)) {
 		// This is a reply
 		const isReplyToTediCross =
-			!R.isNil(repliedToMessage.from) && R.equals(repliedToMessage.from.id, ctx.TediCross.me.id);
+			!R.isNil((repliedToMessage as Message).from) &&
+			R.equals((repliedToMessage as Message).from!.id, ctx.TediCross.me.id);
 		ctx.tediCross.replyTo = {
 			isReplyToTediCross,
 			message: repliedToMessage,

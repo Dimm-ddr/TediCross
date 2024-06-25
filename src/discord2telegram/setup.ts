@@ -249,7 +249,7 @@ export function setup(
 							parse_mode: "HTML",
 							disable_web_page_preview: bridge.discord.disableWebPreviewOnTelegram,
 							message_thread_id: bridge.tgThread
-						});
+						} as any);
 						messageMap.insert(
 							MessageMap.DISCORD_TO_TELEGRAM,
 							bridge,
@@ -322,32 +322,32 @@ export function setup(
 							await tgBot.telegram.sendMediaGroup(bridge.telegram.chatId, oneArray, {
 								reply_to_message_id: +replyId,
 								message_thread_id: bridge.tgThread
-							});
+							} as any);
 						} else {
 							switch (type) {
 								case "video":
 									await tgBot.telegram.sendVideo(bridge.telegram.chatId, oneArray[0].media, {
 										reply_to_message_id: +replyId,
 										message_thread_id: bridge.tgThread
-									});
+									} as any);
 									break;
 								case "audio":
 									await tgBot.telegram.sendAudio(bridge.telegram.chatId, oneArray[0].media, {
 										reply_to_message_id: +replyId,
 										message_thread_id: bridge.tgThread
-									});
+									} as any);
 									break;
 								case "photo":
 									await tgBot.telegram.sendPhoto(bridge.telegram.chatId, oneArray[0].media, {
 										reply_to_message_id: +replyId,
 										message_thread_id: bridge.tgThread
-									});
+									} as any);
 									break;
 								case "document":
 									await tgBot.telegram.sendDocument(bridge.telegram.chatId, oneArray[0].media, {
 										reply_to_message_id: +replyId,
 										message_thread_id: bridge.tgThread
-									});
+									} as any);
 									break;
 							}
 						}
@@ -376,7 +376,7 @@ export function setup(
 							parse_mode: "HTML",
 							disable_web_page_preview: bridge.discord.disableWebPreviewOnTelegram,
 							message_thread_id: bridge.tgThread
-						});
+						} as any);
 						// }
 					} catch (err) {
 						logger.error(`[${bridge.name}] Telegram did not accept an embed:`, (err as Error).toString());
