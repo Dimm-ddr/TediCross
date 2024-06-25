@@ -6,10 +6,6 @@
         "use": "@vercel/node"
       }
     ],
-    "scripts": {
-      "build": "npm run build",
-      "start": "npm start"
-    },
     "env": {
       "TELEGRAM_BOT_TOKEN": "@telegram_bot_token",
       "DISCORD_BOT_TOKEN": "@discord_bot_token",
