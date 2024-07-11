@@ -8,8 +8,7 @@
     "url": "git+https://github.com/TediCross/TediCross.git"
   },
   "scripts": {
-    "build": "npm run prepare-settings && tsc",
-    "prepare-settings": "ts-node prepareSettings.ts",
+    "build": "npm run tsc",
     "postinstall": "npm run build",
     "start": "node dist/main.js",
     "start:dev": "nodemon --watch 'src/**/*.ts' --exec ts-node src/main.ts -i data/",
